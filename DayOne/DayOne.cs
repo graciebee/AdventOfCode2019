@@ -1,7 +1,7 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using FluentAssertions;
+using Helpers;
 using Xunit;
 
 namespace DayOne
@@ -23,8 +23,7 @@ namespace DayOne
         [Fact]
         public void PartOne()
         {
-            var reader = new StreamReader("../../../input.txt");
-            var inputArray = reader.ReadToEnd().Split("\n").Select(x => double.Parse(x.Replace("\r", "")));
+            var inputArray = InputParsingHelpers.ParseFileAsDoubleArray("../../../input.txt");
             var sums = inputArray.Sum(GetFuelFromMass);
 
             sums.Should().Be(3087896);
@@ -33,8 +32,7 @@ namespace DayOne
         [Fact]
         public void PartTwo()
         {
-            var reader = new StreamReader("../../../input.txt");
-            var inputArray = reader.ReadToEnd().Split("\n").Select(x => double.Parse(x.Replace("\r", "")));
+            var inputArray = InputParsingHelpers.ParseFileAsDoubleArray("../../../input.txt");
             var sums = inputArray.Sum(GetFuelFromMassRecursive);
 
             sums.Should().Be(4628989);
