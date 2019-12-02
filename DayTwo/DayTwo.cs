@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
@@ -63,6 +61,7 @@ namespace DayTwo
                     {
                         noun = resultArray.ElementAt(1);
                         verb = resultArray.ElementAt(2);
+                        i = 99;
                         break;
                     }
                 }
