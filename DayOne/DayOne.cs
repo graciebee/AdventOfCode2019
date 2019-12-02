@@ -23,7 +23,7 @@ namespace DayOne
         [Fact]
         public void PartOne()
         {
-            var inputArray = InputParsingHelpers.ParseFileAsDoubleArray("../../../input.txt");
+            var inputArray = InputParsingHelpers.ParseFileAsDoubleArray("../../../input.txt", '\n');
             var sums = inputArray.Sum(GetFuelFromMass);
 
             sums.Should().Be(3087896);
@@ -32,7 +32,7 @@ namespace DayOne
         [Fact]
         public void PartTwo()
         {
-            var inputArray = InputParsingHelpers.ParseFileAsDoubleArray("../../../input.txt");
+            var inputArray = InputParsingHelpers.ParseFileAsDoubleArray("../../../input.txt", '\n');
             var sums = inputArray.Sum(GetFuelFromMassRecursive);
 
             sums.Should().Be(4628989);
