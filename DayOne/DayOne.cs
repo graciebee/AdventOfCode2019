@@ -3,19 +3,27 @@ using System.Linq;
 using FluentAssertions;
 using Helpers;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace DayOne
 {
     public class DayOne
     {
-        public double GetFuelFromMass(double mass)
+        private readonly ITestOutputHelper _testOutputHelper;
+
+        public DayOne(ITestOutputHelper testOutputHelper)
+        {
+            _testOutputHelper = testOutputHelper;
+        }
+
+        private static double GetFuelFromMass(double mass)
         {
             return Math.Floor(mass / 3) - 2;
         }
 
-        public double GetFuelFromMassRecursive(double mass)
+        private static double GetFuelFromMassRecursive(double mass)
         {
-            var fuel = Math.Floor(mass / 3) - 2;
+            var fuel = GetFuelFromMass(mass);
             if (fuel <= 0) return 0;
             return GetFuelFromMassRecursive(fuel) + fuel;
         }
@@ -27,6 +35,7 @@ namespace DayOne
             var sums = inputArray.Sum(GetFuelFromMass);
 
             sums.Should().Be(3087896);
+            _testOutputHelper.WriteLine($"Day One Part One: {sums}");
         }
 
         [Fact]
@@ -36,6 +45,7 @@ namespace DayOne
             var sums = inputArray.Sum(GetFuelFromMassRecursive);
 
             sums.Should().Be(4628989);
+            _testOutputHelper.WriteLine($"Day One Part Two: {sums}");
         }
 
         [Theory]
