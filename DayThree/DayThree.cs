@@ -34,42 +34,27 @@ namespace DayThree
                 var direction = movement.Substring(0, 1);
                 var amount = int.Parse(movement.Substring(1));
 
-                switch (direction)
+                for (var i = 0; i < amount; i++)
                 {
-                    case "L":
-                        for (var i = 0; i < amount; i++)
-                        {
-                            distance++;
+                    distance++;
+                    switch (direction)
+                    {
+                        case "L":
                             currentPosition = Tuple.Create(currentPosition.Item1 - 1, currentPosition.Item2);
-                            map = AddMovement(map, currentPosition, character, distance);
-                        }
-
-                        break;
-                    case "R":
-                        for (var i = 0; i < amount; i++)
-                        {
-                            distance++;
+                            break;
+                        case "R":
                             currentPosition = Tuple.Create(currentPosition.Item1 + 1, currentPosition.Item2);
-                            map = AddMovement(map, currentPosition, character, distance);
-                        }
-                        break;
-                    case "U":
-                        for (var i = 0; i < amount; i++)
-                        {
-                            distance++;
+                            break;
+                        case "U":
                             currentPosition = Tuple.Create(currentPosition.Item1, currentPosition.Item2 + 1);
-                            map = AddMovement(map, currentPosition, character, distance);
-                        }
-                        break;
-                    case "D":
-                        for (var i = 0; i < amount; i++)
-                        {
-                            distance++;
+                            break;
+                        case "D":
                             currentPosition = Tuple.Create(currentPosition.Item1, currentPosition.Item2 - 1);
-                            map = AddMovement(map, currentPosition, character, distance);
-                        }
-                        break;
+                            break;
+                    }
+                    map = AddMovement(map, currentPosition, character, distance);
                 }
+
             }
 
             return map;
@@ -81,8 +66,7 @@ namespace DayThree
             {
                 if (map[currentPosition].Item1 != character && map[currentPosition].Item1 != "X")
                 {
-                    var steps = Math.Abs(map[currentPosition].Item2) + Math.Abs(distance);
-                    map[currentPosition] = new Tuple<string, int>("X", steps);
+                    map[currentPosition] = new Tuple<string, int>("X", map[currentPosition].Item2 + distance);
                 }
 
             }
